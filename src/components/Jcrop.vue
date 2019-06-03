@@ -7,7 +7,7 @@ import Jcrop from '../jcrop';
 
 export default {
   name: 'Jcrop',
-  props: [ 'src', 'options', 'rect', 'initRects' ],
+  props: [ 'src', 'options', 'rect', 'initRects', 'loadImageComplete' ],
   mounted: function() {
     const img = new Image();
     this.$el.appendChild(img);
@@ -17,6 +17,8 @@ export default {
   methods: {
     startup(img){
       console.log(this.options);
+      console.log('图片加载完成');
+      this.loadImageComplete();
       this.jcrop = Jcrop.attach(img,this.options||{});
       let rect = Jcrop.Rect.sizeOf(this.jcrop.el);
 
